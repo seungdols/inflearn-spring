@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="bmiCalculator" class="com.seungdols.spring.ex.BMICalculator">
+    <property name="lowWeight" value="18.5" />
+    <property name="normal" value="20" />
+    <property name="obesity" value="25" />
+    <property name="overWeight" value="30" />
+  </bean>
+
+  <bean id="myInfo" class="com.seungdols.spring.ex.MyInfo">
+    <property name="name" value="seungdols"/>
+    <property name="height" value="174"/>
+    <property name="weight" value="68"/>
+    <property name="hobbys">
+      <list>
+        <value>영화보기</value>
+        <value>드라마보기</value>
+        <value>브런치글쓰기</value>
+        <value>블로그관리</value>
+      </list>
+    </property>
+    <property name="bmiCalculator">
+      <ref bean="bmiCalculator"></ref>
+    </property>
+  </bean>
+
+</beans>
