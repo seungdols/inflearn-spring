@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+  <bean id="logAop" class="com.seungdols.ex.aop.LogAop"/>
+
+  <aop:config>
+
+
+    <aop:aspect id="logger" ref="logAop">
+      <aop:pointcut id="loggerMethod" expression="within(com.seungdols.ex.aop.*)"/>
+      <aop:around method="loggerAop" pointcut-ref="loggerMethod"/>
+    </aop:aspect>
+
+    <aop:aspect id="before" ref="logAop">
+      <aop:pointcut id="loggerMethod" expression="within(com.seungdols.ex.aop.*)"/>
+      <aop:before method="beforeLog" pointcut-ref="loggerMethod"/>
+    </aop:aspect>
+
+    <aop:aspect id="after" ref="logAop">
+      <aop:pointcut id="loggerMethod" expression="within(com.seungdols.ex.aop.*)"/>
+      <aop:after method="afterLog" pointcut-ref="loggerMethod"/>
+    </aop:aspect>
+
+    <aop:aspect id="afterReturning" ref="logAop">
+      <aop:pointcut id="loggerMethod" expression="within(com.seungdols.ex.aop.*)"/>
+      <aop:after-returning method="afterReturning" pointcut-ref="loggerMethod"/>
+    </aop:aspect>
+
+    <aop:aspect id="afterThrowing" ref="logAop">
+      <aop:pointcut id="loggerMethod" expression="within(com.seungdols.ex.aop.*)"/>
+      <aop:after-throwing method="afterThrowing" pointcut-ref="loggerMethod"/>
+    </aop:aspect>
+
+
+  </aop:config>
+
+  <bean id="user" class="com.seungdols.ex.aop.User">
+    <property name="id" value="seungdols"/>
+    <property name="name" value="seungdols"/>
+    <property name="nickName" value="seungdols"/>
+  </bean>
+
+  <bean id="company" class="com.seungdols.ex.aop.Company">
+    <property name="brand" value="seungdols compnay"/>
+    <property name="count_branch" value="25"/>
+  </bean>
+
+</beans>
